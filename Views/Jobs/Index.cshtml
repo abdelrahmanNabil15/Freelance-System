@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Job_Offers_Website.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2 class="text-left">POSts Job</h2>
+
+<p class="text-left">
+    @Html.ActionLink("Create new Post", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr class="text-left">
+            <th class="text-left">
+                @Html.Label("Manage")
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.JobImage)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.JobContent)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr class="text-left">
+        <td class="text-left">
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+        <td class="text-left">
+            <img src="~/Uploads/@Html.DisplayFor(model=>item.JobImage)"
+                 class="thumbnail" style="width:48px; height:48px" />
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.JobContent)
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+
+
+
+
+    </tr>
+        }
+
+    </table>
+    </div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Job_Offers_Website.Models.JobsViewModel>
+
+@foreach (var gr in Model)
+{
+    <h3>@gr.JobTitle</h3>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Freelancer Name
+            </th>
+            <th>
+                Message text
+            </th>
+            <th>
+                Sending Date
+            </th>
+        </tr>
+        @foreach(var item in gr.Items)
+        {
+    <tr>
+        <td>
+            @item.user.UserName
+        </td>
+        <td>
+            @item.Message
+        </td>
+        <td>
+            @item.ApplyDate
+        </td>
+        <td>
+
+            
+            @Html.ActionLink("Refuse", "Delete", new { id = item.Id } )
+            @Html.ActionLink("Accept", "DeletePost", new { id = item.JobId })
+        </td>
+    </tr>
+        }
+    </table>
+}

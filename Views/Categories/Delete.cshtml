@@ -1,0 +1,227 @@
+﻿ < !DOCTYPE html >
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+    <link rel="stylesheet" href="~/css/Wall_Layout/searchbox.css" />
+    <link rel="stylesheet" href="~/css/Wall_Layout/bootstrap.min.css" />
+    <link href="~/Css/Wall_Layout/style.css" rel="stylesheet" />
+    <link href="~/css/Wall_Layout/loginAndReg.css" rel="stylesheet" />
+    <link href="~/Css/Wall_Layout/footer.css" rel="stylesheet" />
+
+
+    <!-- Post -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Css/Factory_Layout/Myposts.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!--search-->
+
+</head>
+
+<body>
+
+
+
+
+    <header class="top-area" style=" background-color: #282d32">
+        <div class="header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="~/Views/HomePosts/ShowActivePosts.cshtml">
+                                The<span>News</span>
+                            </a>
+                        </div><!-- /.logo-->
+                    </div><!-- /.col-->
+                    <div class="col-sm-10">
+                        <div class="main-menu">
+
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <i class="fa fa-bars"></i>
+                                </button><!-- / button-->
+                            </div><!-- /.navbar-header-->
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @using (Html.BeginForm("search", "HomePosts", FormMethod.Post))
+                                        {
+                                            <input type="text" id="searchname" name="searchname" placeholder="Search..">
+
+                                        }
+                                    </li>
+
+
+                                    <li>
+                                        <button onclick="document.getElementById('id01').style.display='block'" class="book-btn">Login</button>
+
+                                        <button class="book-btn" onclick="document.getElementById('id02').style.display='block'">
+                                            Register
+                                        </button>
+                                    </li><!--/.project-btn-->
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.main-menu-->
+                    </div><!-- /.col-->
+                </div><!-- /.row -->
+                <div class="home-border"></div><!-- /.home-border-->
+            </div><!-- /.container-->
+        </div><!-- /.header-area -->
+
+    </header><!-- /.top-area-->
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="verify" method="post">
+
+
+            <div class="container">
+                <input type="text" name="email" placeholder="Username" required>
+                <input type="password" name="Password" placeholder="Password" required>
+
+
+                <button type="submit" style=" background-color: #00d8ff; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Login</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="id02" class="modal" style=" display: none; /* Hidden by default / position: fixed; / Stay in place / z-index: 1; / Sit on top / padding-top: 100px; / Location of the box / left: 0; top: 0; width: 100%; / Full width / height: 100%; / Full height / overflow: auto; / Enable scroll if needed / background-color: rgb(0,0,0); / Fallback color / background-color: rgba(0,0,0,0.4); / Black w/ opacity */">
+        @using (Html.BeginForm("register", "HomePosts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <form class="modal-content animate">
+
+                <div class="container2" style="margin:0 100px 0 100px;background-color: white;padding: 20px;border-radius: 10px;">
+
+                    <label for="firstname"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter First Name" name="firstname" required>
+
+                    <label for="lastname"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Last Name" name="lastname" required>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+
+                    <label for="phone"><b>Phone</b></label>
+                    <input type="text" placeholder="Enter Phone" name="phone" required>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            @*                                @Html.LabelFor(model => @Mode.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                            *@
+                            <input type="file" name="doc" />
+                        </div>
+                    </div>
+
+
+                    <button type="submit" style=" background-color: #00d8ff; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Register</button>
+                    <div>
+                        <div class="container2" style="background-color:#f1f1f1, margin-right: 60px;">
+                            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </form>}
+    </div>
+
+
+
+
+
+    <script>
+        // Get the modal
+        var modal1 = document.getElementById('id01');
+        var modal2 = document.getElementById('id02');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal1) {
+                modal.style.display = "none";
+            }
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal2) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
+
+
+    @RenderBody()
+
+
+
+
+
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Company Name</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Company Name © 2018</p>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!---search-->
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+</html>
